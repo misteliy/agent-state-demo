@@ -1,0 +1,15 @@
+# Generated demo output contains local signing keys and execution state.
+runs/
+service.key
+*.sqlite
+*.sqlite-*
+snapshots.jsonl
+events.jsonl
+trace.otlp.json
+playback.json
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+.DS_Store

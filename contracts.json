@@ -1,0 +1,24 @@
+{
+  "version": "credit-contract-v1",
+  "description": "Educational behavioral contract; JSON Schema subset is enforced by contracts.py.",
+  "tools": {
+    "read_order": {
+      "input": {"type": "object", "additionalProperties": false, "required": ["order_id"], "properties": {"order_id": {"type": "string", "minLength": 1}}},
+      "effect": "read"
+    },
+    "read_tracking": {
+      "input": {"type": "object", "additionalProperties": false, "required": ["order_id"], "properties": {"order_id": {"type": "string", "minLength": 1}}},
+      "effect": "read"
+    },
+    "issue_credit": {
+      "input": {"type": "object", "additionalProperties": false, "required": ["order_id", "amount_cents", "expected_order_version"], "properties": {"order_id": {"type": "string", "minLength": 1}, "amount_cents": {"type": "integer", "minimum": 1}, "expected_order_version": {"type": "integer", "minimum": 1}}},
+      "effect": "write",
+      "preconditions": ["order_exists", "tenant_matches", "order_version_matches", "delivery_was_late", "amount_equals_delivery_fee"],
+      "postconditions": ["credit_and_receipt_commit_together", "receipt_binds_operation_and_payload"],
+      "idempotency": {"required": true, "scope": "operation_id within this service database", "retention": "lifetime of demo database", "changed_payload": "reject"},
+      "recovery": {"lookup": "lookup_outcome", "timeout": "outcome_unknown", "retry": "same_operation_id_and_payload"},
+      "business_uniqueness": "at_most_one_credit_per_order",
+      "cancellation": "not_implemented"
+    }
+  }
+}

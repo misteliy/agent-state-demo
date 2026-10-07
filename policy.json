@@ -1,0 +1,13 @@
+{
+  "version": "support-policy-v1",
+  "principals": {
+    "agent-support": {"tenant": "company-a", "role": "agent"},
+    "agent-other": {"tenant": "company-b", "role": "agent"},
+    "supervisor-a": {"tenant": "company-a", "role": "supervisor"}
+  },
+  "automatic_credit_limit_cents": 1000,
+  "daily_credit_budget_cents": 10000,
+  "grant_lifetime_seconds": 300,
+  "approval_semantics": "bound to exact operation, principal, tenant, tool, arguments, contract and policy; expiry checked at admission and inside the transaction admitting a new service effect",
+  "budget_semantics": "tenant and UTC day of first reservation; reserved plus spent; one reservation per logical operation; unknown outcomes retain reservation"
+}
