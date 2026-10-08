@@ -1,6 +1,6 @@
 # Agent state and execution contracts
 
-A runnable companion to **The Freedom to Choose the Pieces**: what must an agent system preserve when work is interrupted or its components change?
+A runnable companion to **[The Freedom to Choose the Pieces](https://y4nnick.substack.com/p/the-freedom-to-choose-the-pieces)**: what must an agent system preserve when work is interrupted or its components change?
 
 A service commits a €5 credit. The worker crashes before saving the response. One recovery strategy creates a new operation and credits another €5. The other preserves the original operation identity, finds the existing outcome and finishes with €5 total.
 
